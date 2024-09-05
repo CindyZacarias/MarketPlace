@@ -13,4 +13,6 @@ public class PedidoDTO {
 
     private String nombre;
 
+    private Integer id_usuario;
+
 }

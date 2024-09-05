@@ -1,11 +1,6 @@
 package com.example.MarketPlace.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
@@ -20,4 +15,6 @@ public class Pedido {
     private String fecha;
     @Column
     private String nombre;
+    @Column
+    private Integer id_usuario;
 }
