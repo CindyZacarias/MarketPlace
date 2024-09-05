@@ -22,12 +22,12 @@ public class ArticuloService {
     	return articulo_Repository.findById(id);
     }
     
-    public void saveOrUpdate(Articulo articulo){
+    public void saveArticulo(Articulo articulo){
     	articulo_Repository.save(articulo);
     }
-    
-    public void delete(Integer id){
-        articulo_Repository.deleteById(id);
+
+    public void updateArticulo(Articulo articulo){
+        articulo_Repository.save(articulo);
     }
     
 }
