@@ -29,5 +29,4 @@ public class ArticuloService {
     public void updateArticulo(Articulo articulo){
         articulo_Repository.save(articulo);
     }
-    
 }
