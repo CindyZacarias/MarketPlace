@@ -1,5 +1,23 @@
 package com.example.MarketPlace.entity;
 
-public class Pedido {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
+@Entity
+@Table(name = "pedido")
+public class Pedido {
+	
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id_pedido;
+    @Column
+    private String fecha;
+    @Column
+    private String nombre;
 }

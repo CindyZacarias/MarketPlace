@@ -1,5 +1,18 @@
 package com.example.MarketPlace.dto;
 
-public class ArticuloDTO {
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+public class ArticuloDTO {
+	
+    private Integer id_articulo;
+
+    private String nombre;
+
+    private Long precio;
+
+    private Integer stock;
+    
 }
