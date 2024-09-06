@@ -20,4 +20,5 @@ public class Usuario {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_usuario")
     private List<Pedido> pedidos;
+
 }
