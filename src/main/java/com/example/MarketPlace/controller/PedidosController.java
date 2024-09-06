@@ -38,4 +38,9 @@ public class PedidosController {
         return pedido;
     }
 
+    @DeleteMapping("/{id_pedido}")
+    public void save(@PathVariable("id_pedido") Integer id_pedido){
+        pedidoService.delete(id_pedido);
+    }
+
 }

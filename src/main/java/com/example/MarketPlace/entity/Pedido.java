@@ -19,4 +19,7 @@ public class Pedido {
     private String nombre;
     @Column
     private Integer id_usuario;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_pedido")
+    private List<ArticuloPedido> articulos;
 }

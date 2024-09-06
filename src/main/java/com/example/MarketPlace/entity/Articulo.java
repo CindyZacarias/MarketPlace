@@ -19,7 +19,5 @@ public class Articulo {
     private Long precio;
     @Column
     private Integer stock;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_articulo")
-    private List<ArticuloPedido> articulos_pedidos;
+
 }

@@ -16,7 +16,7 @@ public class ArticuloPedidoController {
     @Autowired
     private ArticuloPedidoService articuloPedidoService;
 
-    @GetMapping("/pedidos-articulos")
+    @GetMapping("/articulos-pedidos")
     public List<ArticuloPedido> getAll(){
         return articuloPedidoService.getArticuloPedido();
     }
