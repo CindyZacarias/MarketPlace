@@ -1,18 +1,25 @@
 package com.example.MarketPlace.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ArticuloDTO {
-	
+
+    @JsonProperty(value = "id")
     private Integer id_articulo;
 
+    @JsonProperty(value = "nombre")
     private String nombre;
 
-    private Long precio;
+    @JsonProperty(value = "precio")
+    private Double precio;
 
+    @JsonProperty(value = "stock")
     private Integer stock;
-    
+
 }

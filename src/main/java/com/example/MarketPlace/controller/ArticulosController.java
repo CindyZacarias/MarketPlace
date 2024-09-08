@@ -3,10 +3,14 @@ package com.example.MarketPlace.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.MarketPlace.dto.ArticuloDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import com.example.MarketPlace.entity.Articulo;
 import com.example.MarketPlace.service.ArticuloService;
 
 @RestController
@@ -15,27 +19,44 @@ public class ArticulosController {
 	
     @Autowired
     private ArticuloService articuloService;
-    
+
     @GetMapping("/articulos")
-    public List<Articulo> getAll(){
-        return articuloService.getArticulos();
+    public ResponseEntity<?> findAll() {
+        return new ResponseEntity<List<ArticuloDTO>>(articuloService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/articulos/{id_articulo}")
-    public Optional<Articulo> getById(@PathVariable("id_articulo") Integer id_articulo){
-        return articuloService.getArticulo(id_articulo);
+    @GetMapping(value = "/articulos/{id_articulo}")
+    public Optional<ArticuloDTO> getById(@PathVariable("id_articulo") Integer id_articulo){
+        return articuloService.findById(id_articulo);
     }
 
     @PostMapping("/articulo")
-    public Articulo save(@RequestBody Articulo articulo){
-    	articuloService.saveArticulo(articulo);
-        return articulo;
+    public ResponseEntity<ArticuloDTO> createArticulo(@RequestBody @Valid ArticuloDTO articulo, BindingResult result) {
+        if(result.hasErrors()) {
+            System.out.println("campos incorrectos");
+            System.out.println("error: " + result.getAllErrors());
+            return new ResponseEntity<ArticuloDTO>(HttpStatus.BAD_REQUEST);
+        } else {
+            articuloService.create(articulo);
+            return new ResponseEntity<ArticuloDTO>(articulo, HttpStatus.CREATED);
+        }
+
     }
 
-    @PutMapping("/articulos/{id_articulo}")
-    public Articulo update(@RequestBody Articulo articulo){
-        articuloService.updateArticulo(articulo);
-        return articulo;
+    @PutMapping(value = "/articulos/{id_articulo}")
+    public ResponseEntity<ArticuloDTO> update(@RequestBody ArticuloDTO articulo, @PathVariable String id_articulo,BindingResult result) {
+
+        if(result.hasErrors()) {
+
+            System.out.println("campos incorrectos");
+            System.out.println("error: " + result.getAllErrors());
+            return new ResponseEntity<ArticuloDTO>(HttpStatus.BAD_REQUEST);
+
+        } else {
+
+            articuloService.update(articulo);
+            return new ResponseEntity<ArticuloDTO>(articulo, HttpStatus.ACCEPTED);
+        }
     }
 
 }

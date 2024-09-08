@@ -3,7 +3,7 @@ USE MARKETPLACE;
 
 CREATE TABLE articulo (
   id_articulo INT NOT NULL AUTO_INCREMENT,
-  nombre VARCHAR(100) NULL,
+  nombre VARCHAR(100) NOT NULL,
   precio DECIMAL(10,2) NULL,
   stock INT NULL,
   PRIMARY KEY (id_articulo));
