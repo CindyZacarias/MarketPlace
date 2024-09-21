@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.MarketPlace.dto.PedidoDTO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.MarketPlace.dto.PedidoDTO;
 import com.example.MarketPlace.entity.Pedido;
 import com.example.MarketPlace.repository.Pedido_Repository;
 
@@ -26,10 +27,45 @@ public class PedidoService {
 			dto.setNombre(pedido.getNombre());
 			dto.setFecha(pedido.getFecha());
 			dto.setId_usuario(pedido.getId_usuario());
+			dto.setArticulos(pedido.getArticulos());
 			dtos.add(dto);
 		}
 
 		return  dtos;
+
+	}
+
+	public Optional<PedidoDTO> findById(Integer id_pedido) {
+
+		PedidoDTO dto = new PedidoDTO();
+		Pedido entity = pedido_Repository.findById(id_pedido).get();
+
+		BeanUtils.copyProperties(entity, dto);
+
+		return Optional.of(dto);
+
+	}
+
+	public void create(PedidoDTO dto) {
+
+		Pedido entity = new Pedido();
+		entity.setNombre(dto.getNombre());
+		entity.setFecha(dto.getFecha());
+		entity.setId_usuario(dto.getId_usuario());
+
+		pedido_Repository.save(entity);
+
+	}
+
+	public void update(PedidoDTO dto) {
+
+		Pedido entity = new Pedido();
+		entity.setId_pedido(dto.getId_pedido());
+		entity.setNombre(dto.getNombre());
+		entity.setFecha(dto.getFecha());
+		entity.setId_usuario(dto.getId_usuario());
+
+		pedido_Repository.save(entity);
 
 	}
 

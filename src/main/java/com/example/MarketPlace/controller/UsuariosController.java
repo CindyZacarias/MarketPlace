@@ -26,7 +26,7 @@ public class UsuariosController {
     }
 
     @GetMapping(value = "/usuarios/{id_usuario}")
-    public  Optional<UsuarioDTO> getById(@PathVariable("id_usuario") Integer id_usuario){
+    public Optional<UsuarioDTO> getById(@PathVariable("id_usuario") Integer id_usuario){
         return usuarioService.findById(id_usuario);
     }
 
