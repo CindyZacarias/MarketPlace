@@ -33,30 +33,25 @@ public class ArticulosController {
     @PostMapping("/articulo")
     public ResponseEntity<ArticuloDTO> createArticulo(@RequestBody @Valid ArticuloDTO articulo, BindingResult result) {
         if(result.hasErrors()) {
-            System.out.println("campos incorrectos");
+            System.out.println("datos incorrectos");
             System.out.println("error: " + result.getAllErrors());
             return new ResponseEntity<ArticuloDTO>(HttpStatus.BAD_REQUEST);
         } else {
             articuloService.create(articulo);
             return new ResponseEntity<ArticuloDTO>(articulo, HttpStatus.CREATED);
         }
-
     }
 
     @PutMapping(value = "/articulos/{id_articulo}")
     public ResponseEntity<ArticuloDTO> update(@RequestBody ArticuloDTO articulo, @PathVariable String id_articulo,BindingResult result) {
 
         if(result.hasErrors()) {
-
-            System.out.println("campos incorrectos");
+            System.out.println("datos incorrectos");
             System.out.println("error: " + result.getAllErrors());
             return new ResponseEntity<ArticuloDTO>(HttpStatus.BAD_REQUEST);
-
         } else {
-
             articuloService.update(articulo);
             return new ResponseEntity<ArticuloDTO>(articulo, HttpStatus.ACCEPTED);
         }
     }
-
 }
