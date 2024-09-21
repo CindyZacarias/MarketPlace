@@ -3,7 +3,10 @@ package com.example.MarketPlace.controller;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.MarketPlace.dto.PedidoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.example.MarketPlace.entity.Pedido;
@@ -17,30 +20,8 @@ public class PedidosController {
     private PedidoService pedidoService;
 
     @GetMapping("/pedidos")
-    public List<Pedido> getAll(){
-        return pedidoService.getPedidos();
-    }
-
-    @GetMapping("/pedidos/{id_pedido}")
-    public Optional<Pedido> getById(@PathVariable("id_pedido") Integer id_pedido){
-        return pedidoService.getPedido(id_pedido);
-    }
-
-    @PostMapping("/pedido")
-    public Pedido save(@RequestBody Pedido pedido){
-        pedidoService.savePedido(pedido);
-        return pedido;
-    }
-
-    @PutMapping("/pedidos/{id_pedido}")
-    public Pedido update(@RequestBody Pedido pedido){
-        pedidoService.updatePedido(pedido);
-        return pedido;
-    }
-
-    @DeleteMapping("/{id_pedido}")
-    public void save(@PathVariable("id_pedido") Integer id_pedido){
-        pedidoService.delete(id_pedido);
+    public ResponseEntity<?> findAll() {
+        return  new ResponseEntity<List<PedidoDTO>>(pedidoService.findAll(), HttpStatus.OK);
     }
 
 }

@@ -1,13 +1,14 @@
 package com.example.MarketPlace.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
-
+import lombok.Getter;
+import lombok.Setter;
 import java.util.List;
 
-@Data
 @Entity
 @Table(name = "pedido")
+@Getter
+@Setter
 public class Pedido {
 	
     @Id
@@ -22,4 +23,5 @@ public class Pedido {
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_pedido")
     private List<ArticuloPedido> articulos;
+
 }

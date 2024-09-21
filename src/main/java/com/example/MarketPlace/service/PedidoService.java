@@ -1,8 +1,10 @@
 package com.example.MarketPlace.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.MarketPlace.dto.PedidoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,24 +16,21 @@ public class PedidoService {
 	@Autowired
 	Pedido_Repository pedido_Repository;
 
-	public List<Pedido> getPedidos(){
-		return pedido_Repository.findAll();
-	}
+	public List<PedidoDTO> findAll() {
+		List<PedidoDTO> dtos = new ArrayList<PedidoDTO>();
+		List<Pedido> entities = pedido_Repository.findAll();
 
-	public Optional<Pedido> getPedido(Integer id){
-		return pedido_Repository.findById(id);
-	}
+		for (Pedido pedido : entities) {
+			PedidoDTO dto = new PedidoDTO();
+			dto.setId_pedido(pedido.getId_pedido());
+			dto.setNombre(pedido.getNombre());
+			dto.setFecha(pedido.getFecha());
+			dto.setId_usuario(pedido.getId_usuario());
+			dtos.add(dto);
+		}
 
-	public void savePedido(Pedido pedido){
-		pedido_Repository.save(pedido);
-	}
+		return  dtos;
 
-	public void updatePedido(Pedido pedido){
-		pedido_Repository.save(pedido);
-	}
-
-	public void delete(Integer id){
-		pedido_Repository.deleteById(id);
 	}
 
 }

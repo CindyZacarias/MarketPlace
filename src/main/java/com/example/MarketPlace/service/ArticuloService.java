@@ -22,7 +22,7 @@ public class ArticuloService {
         List<ArticuloDTO> dtos = new ArrayList<ArticuloDTO>();
         List<Articulo> entities = articulo_Repository.findAll();
 
-        for (Articulo articulo : entities){
+        for (Articulo articulo : entities) {
             ArticuloDTO dto = new ArticuloDTO();
             dto.setId_articulo(articulo.getId_articulo());
             dto.setNombre(articulo.getNombre());
