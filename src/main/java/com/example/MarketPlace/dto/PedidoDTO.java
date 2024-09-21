@@ -34,8 +34,8 @@ public class PedidoDTO {
     @JsonProperty(value = "fecha")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate fecha;
-    
-    @JsonIgnore
+
+    @JsonProperty(value = "id_usuario")
     private Integer id_usuario;
 
     @JsonProperty(value = "articulos")
