@@ -1,5 +1,6 @@
 package com.example.MarketPlace.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -25,7 +26,7 @@ public class PedidoService {
 			PedidoDTO dto = new PedidoDTO();
 			dto.setId_pedido(pedido.getId_pedido());
 			dto.setNombre(pedido.getNombre());
-			dto.setFecha(pedido.getFecha());
+			dto.setFecha(LocalDate.parse(pedido.getFecha()));
 			dto.setId_usuario(pedido.getId_usuario());
 			dto.setArticulos(pedido.getArticulos());
 			dtos.add(dto);
@@ -50,7 +51,7 @@ public class PedidoService {
 
 		Pedido entity = new Pedido();
 		entity.setNombre(dto.getNombre());
-		entity.setFecha(dto.getFecha());
+		entity.setFecha(String.valueOf(dto.getFecha()));
 		entity.setId_usuario(dto.getId_usuario());
 
 		pedido_Repository.save(entity);
@@ -62,7 +63,7 @@ public class PedidoService {
 		Pedido entity = new Pedido();
 		entity.setId_pedido(dto.getId_pedido());
 		entity.setNombre(dto.getNombre());
-		entity.setFecha(dto.getFecha());
+		entity.setFecha(String.valueOf(dto.getFecha()));
 		entity.setId_usuario(dto.getId_usuario());
 
 		pedido_Repository.save(entity);

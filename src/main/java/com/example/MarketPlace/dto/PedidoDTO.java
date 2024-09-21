@@ -1,11 +1,14 @@
 package com.example.MarketPlace.dto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.example.MarketPlace.entity.ArticuloPedido;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
@@ -29,7 +32,8 @@ public class PedidoDTO {
     private String nombre;
 
     @JsonProperty(value = "fecha")
-    private String fecha;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    private LocalDate fecha;
     
     @JsonIgnore
     private Integer id_usuario;
